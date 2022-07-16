@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link rel="stylesheet" href="style.css"></link>
+</head>
+<body>
+    <div class="displaybox">
+        <div id="result" class="content"></div>
+
+        <div class="auth" id="author" ></div>    
+
+       
+    </div>
+
+    <script>
+
+        function quotes()
+        {
+            fetch('https://type.fit/api/quotes')
+                    .then((response) => {
+                        return response.json();
+                    })
+                    .then((myJson) => {
+                        // console.log(myJson[0])
+                        let x = Math.floor((Math.random() * 1640) + 1);
+                        document.getElementById("result").innerHTML=myJson[x].text;
+        
+                        if(myJson[x].author==null)
+                        {
+                            
+                        }
+        
+                        else
+                        {
+                            document.getElementById("author").innerHTML="~"+myJson[x].author;
+                        }
+        
+                    })
+        
+                    
+        
+        }
+        quotes();       
+        setInterval(quotes,5000);
+        
+        </script>
+
+
+</body>
+
+
+</html>
